@@ -4,6 +4,8 @@ import dio.challenge.model.Product;
 import dio.challenge.service.ProductService;
 import dio.challenge.strategy.DiscountStrategy;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.models.annotations.OpenAPI30;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,9 +17,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
-@OpenAPI30
 @RestController
-@RequestMapping("/products")
+@RequestMapping(value = "/products", produces = {"application/json"})
+@Tag(name = "products-api-rest")
 public class ProductController {
     @Autowired
     private ProductService productService;
