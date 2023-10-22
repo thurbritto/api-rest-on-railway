@@ -3,6 +3,7 @@ package dio.challenge.controller;
 import dio.challenge.model.Product;
 import dio.challenge.service.ProductService;
 import dio.challenge.strategy.DiscountStrategy;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.models.annotations.OpenAPI30;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -26,18 +27,21 @@ public class ProductController {
     @Autowired
     private DiscountStrategy marketDiscountStrategy; // Injeção da estratégia para a Feira
 
+    @Operation(summary = "Solicita todos elementos do banco", method = "GET")
     @GetMapping
     public List<Product> getAllProducts() {
         System.out.println("GET - Retornando todos elementos");
         return productService.getAllProducts();
     }
 
+    @Operation(summary = "Solicita um elemento específico por ID", method = "GET")
     @GetMapping("/{id}")
     public Optional<Product> getProduct(@PathVariable Long id) {
-        System.out.println("GET by ID - Retornando elemento por id");
+        System.out.println("GET by ID - Retornando elemento por ID");
         return productService.getProductById(id);
     }
 
+    @Operation(summary = "Insere um elemento no banco", method = "POST")
     @PostMapping
     public Product createProduct(@RequestBody Product product) {
         System.out.println("POST - Inserindo o produto");
@@ -47,7 +51,7 @@ public class ProductController {
         return productService.createProduct(product);
     }
 
-
+    @Operation(summary = "Atualiza um elemento específico por ID", method = "PUT")
     @PutMapping("/{id}")
     public ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestBody Product updatedProduct) {
         System.out.println("PUT - Atualizando o produto");
@@ -68,6 +72,7 @@ public class ProductController {
         }
     }
 
+    @Operation(summary = "Delete um elemento específico por ID", method = "DELETE")
     @DeleteMapping("/{id}")
     public void deleteProduct (@PathVariable Long id){
         System.out.println("DELETE - Deletando o produto");
