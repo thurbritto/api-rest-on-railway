@@ -3,6 +3,7 @@ package dio.challenge.controller;
 import dio.challenge.model.Product;
 import dio.challenge.service.ProductService;
 import dio.challenge.strategy.DiscountStrategy;
+import io.swagger.v3.oas.models.annotations.OpenAPI30;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +14,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
-
+@OpenAPI30
 @RestController
 @RequestMapping("/products")
 public class ProductController {
